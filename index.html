@@ -1,734 +1,817 @@
 <!DOCTYPE html>
-<html lang="de-CH">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Viantis GmbH: Autovermietung, Autopflegeprodukte und Autozubehoer aus einer Hand.">
-  <title>Viantis GmbH | Rent, Shop & Car Care</title>
-  <link rel="icon" type="image/png" href="viantis_favicon.png">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #101010;
-      background: #f4f4f4;
-      line-height: 1.5;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: min(1160px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(12, 12, 12, 0.92);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(14px);
-    }
-
-    .topbar-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand-mark img {
-      width: 196px;
-      height: auto;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .nav a {
-      padding: 10px 12px;
-      border-radius: 8px;
-    }
-
-    .nav a:hover {
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero {
-      min-height: 620px;
-      display: grid;
-      align-items: center;
-      color: #ffffff;
-      background:
-        linear-gradient(90deg, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.82) 44%, rgba(8, 8, 8, 0.36) 100%),
-        url("herobanner.jpg") center right / cover;
-    }
-
-    .hero-inner {
-      padding: 56px 0 46px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.72fr);
-      gap: 42px;
-      align-items: end;
-    }
-
-    .hero-logo {
-      width: min(360px, 100%);
-      margin-bottom: 24px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 16px;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 2px;
-      background: #ffffff;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      max-width: 820px;
-      margin-bottom: 22px;
-      font-size: clamp(44px, 7vw, 86px);
-      line-height: 0.95;
-      letter-spacing: 0;
-    }
-
-    .hero-copy {
-      max-width: 650px;
-      margin-bottom: 30px;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: clamp(17px, 2vw, 21px);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      min-height: 48px;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 8px;
-      padding: 13px 18px;
-      font-weight: 900;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      border-color: #ffffff;
-      background: #ffffff;
-      color: #101010;
-      box-shadow: 0 18px 45px rgba(255, 255, 255, 0.18);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-    }
-
-    .quick-panel {
-      align-self: stretch;
-      display: grid;
-      gap: 14px;
-    }
-
-    .quick-link {
-      display: grid;
-      gap: 10px;
-      min-height: 176px;
-      align-content: end;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 8px;
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(14px);
-    }
-
-    .quick-link strong {
-      font-size: 25px;
-      line-height: 1.1;
-    }
-
-    .quick-link span {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .quick-link b {
-      color: #ffffff;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    section {
-      padding: 84px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 28px;
-      margin-bottom: 34px;
-    }
-
-    .section-head h2 {
-      max-width: 720px;
-      margin-bottom: 0;
-      font-size: clamp(32px, 4vw, 54px);
-      line-height: 1.02;
-      letter-spacing: 0;
-    }
-
-    .section-head p {
-      max-width: 390px;
-      margin-bottom: 0;
-      color: #5d5d5d;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .service {
-      min-height: 520px;
-      display: grid;
-      grid-template-rows: 260px 1fr;
-      overflow: hidden;
-      border: 1px solid #dedede;
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.08);
-    }
-
-    .service-media {
-      position: relative;
-      overflow: hidden;
-      background: #151515;
-    }
-
-    .service-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .service-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.22));
-    }
-
-    .shop-visual {
-      height: 100%;
-      padding: 28px;
-      display: grid;
-      align-content: center;
-      gap: 14px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 42%),
-        linear-gradient(160deg, #050505, #242424 72%, #f2f2f2);
-    }
-
-    .product-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      align-items: end;
-    }
-
-    .bottle {
-      min-height: 158px;
-      border-radius: 8px;
-      background: linear-gradient(180deg, #fefefe, #c8c8c8);
-      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.22);
-      position: relative;
-    }
-
-    .bottle::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -20px;
-      width: 36%;
-      height: 32px;
-      transform: translateX(-50%);
-      border-radius: 6px 6px 2px 2px;
-      background: #111111;
-    }
-
-    .bottle:nth-child(2) {
-      min-height: 210px;
-      background: linear-gradient(180deg, #ffffff, #1b1b1b);
-    }
-
-    .bottle:nth-child(3) {
-      min-height: 134px;
-      background: linear-gradient(180deg, #ffffff, #767676);
-    }
-
-    .service-body {
-      padding: 28px;
-      display: grid;
-      gap: 18px;
-      align-content: start;
-    }
-
-    .service-kicker {
-      color: #6a6a6a;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .service h3 {
-      margin-bottom: 0;
-      font-size: clamp(28px, 3vw, 40px);
-      line-height: 1.05;
-    }
-
-    .service p {
-      margin-bottom: 0;
-      color: #4e4e4e;
-    }
-
-    .service ul {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: #252525;
-      font-weight: 800;
-    }
-
-    .service li {
-      display: flex;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .service li::before {
-      content: "";
-      flex: 0 0 auto;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #111111;
-    }
-
-    .service .btn {
-      width: fit-content;
-      border-color: #101010;
-      color: #101010;
-      background: #ffffff;
-    }
-
-    .service .btn:hover {
-      border-color: #101010;
-      background: #101010;
-      color: #ffffff;
-    }
-
-    .dark-band {
-      color: #ffffff;
-      background: #101010;
-    }
-
-    .values {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .value {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      padding: 24px;
-      background: #171717;
-    }
-
-    .value span {
-      color: #ffffff;
-      font-size: 34px;
-      font-weight: 900;
-    }
-
-    .value h3 {
-      margin: 12px 0 8px;
-      font-size: 22px;
-    }
-
-    .value p {
-      margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.68);
-    }
-
-    .contact {
-      background:
-        linear-gradient(90deg, rgba(244, 244, 244, 0.98), rgba(244, 244, 244, 0.86)),
-        url("smart.png") center right / contain no-repeat;
-    }
-
-    .contact-panel {
-      max-width: 680px;
-    }
-
-    .contact-panel h2 {
-      margin-bottom: 16px;
-      font-size: clamp(34px, 4vw, 58px);
-      line-height: 1.02;
-    }
-
-    .contact-panel p {
-      max-width: 560px;
-      color: #4e4e4e;
-      font-size: 18px;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .contact .btn-secondary {
-      border-color: #101010;
-      background: #ffffff;
-      color: #101010;
-    }
-
-    .footer {
-      padding: 32px 0;
-      color: rgba(255, 255, 255, 0.7);
-      background: #080808;
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer a {
-      color: #ffffff;
-      font-weight: 800;
-    }
-
-    @media (max-width: 900px) {
-      .topbar-inner {
-        min-height: 68px;
-      }
-
-      .brand-mark img {
-        width: 168px;
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        min-height: 560px;
-        background:
-          linear-gradient(180deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.78) 58%, rgba(8, 8, 8, 0.92) 100%),
-          url("mercedes.png") center / cover;
-      }
-
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding: 42px 0 36px;
-      }
-
-      .hero-logo {
-        width: min(300px, 100%);
-      }
-
-      .quick-panel,
-      .split,
-      .values {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        display: block;
-      }
-
-      .section-head p {
-        margin-top: 14px;
-      }
-
-      .service {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .container {
-        width: min(100% - 24px, 1160px);
-      }
-
-      .topbar-inner {
-        justify-content: center;
-      }
-
-      .brand-mark img {
-        width: 152px;
-      }
-
-      .hero-inner {
-        padding-top: 34px;
-      }
-
-      .hero-logo {
-        margin-bottom: 26px;
-      }
-
-      .hero-actions,
-      .contact-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      section {
-        padding: 58px 0;
-      }
-
-      .quick-link,
-      .service-body,
-      .value {
-        padding: 20px;
-      }
-
-      .service {
-        grid-template-rows: 220px 1fr;
-      }
-
-      .contact {
-        background: #f4f4f4;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viantis Mietvertrag</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--blue:#0563f0;--bg:#eef4fb;--line:#d8e0ea;--text:#172033;--green:#e8f8ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text)}
+.wrap{max-width:1180px;margin:auto;padding:18px}
+.top,.card{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:14px;padding:16px}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 3px 12px #0001}
+.top h1{font-size:21px;margin:0 auto 0 0}
+h2{font-size:15px;margin:0 0 14px;background:var(--blue);color:#fff;padding:8px 10px;border-radius:5px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.f{display:flex;flex-direction:column;gap:5px}.span2{grid-column:span 2}.span4{grid-column:span 4}
+label{font-size:12px;font-weight:bold;color:#566174}
+input,select,textarea{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;font:inherit;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid #0563f025;border-color:var(--blue)}
+textarea{min-height:70px;resize:vertical}
+button{border:0;background:var(--blue);color:#fff;padding:9px 13px;border-radius:6px;font-weight:bold;cursor:pointer}
+button.gray{background:#64748b} button.red{background:#c93737} button.green{background:#119451}
+.summary{background:var(--green);border:1px solid #b9dfc7;border-radius:7px;padding:8px 12px;font-weight:bold}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#eef4ff;text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:7px;border-bottom:1px solid var(--line);vertical-align:middle}
+td input,td select{padding:7px}
+.right{text-align:right}.muted{color:#6b7280;font-size:11px}.note{background:#fff8d7;border:1px solid #ead784;padding:9px;border-radius:6px;font-size:12px}
+.siggrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sig{border:1px solid var(--line);padding:10px;border-radius:8px}
+canvas{width:100%;height:130px;border:1px dashed #aab5c4;background:#fff;touch-action:none}
+.configbox{font-family:monospace;background:#101827;color:#d7e4ff;padding:10px;border-radius:6px;font-size:11px;white-space:pre-wrap}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.span4{grid-column:span 2}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.span2,.span4{grid-column:span 1}.siggrid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a class="brand-mark" href="#top" aria-label="Viantis GmbH Startseite">
-          <img src="viantis_tripplelogo.png" alt="Viantis GmbH">
-        </a>
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a href="#rent">Rent</a>
-          <a href="#shop">Shop</a>
-          <a href="#kontakt">Kontakt</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="top">
-      <section class="hero" aria-labelledby="heroTitle">
-        <div class="container hero-inner">
-          <div>
-            <img class="hero-logo" src="viantis_tripplelogo.png" alt="Viantis GmbH">
-            <p class="eyebrow">Rent | Shop | Car Care</p>
-            <h1 id="heroTitle">Mobilitaet und Autopflege aus einer Hand.</h1>
-            <p class="hero-copy">
-              Viantis GmbH verbindet unkomplizierte Autovermietung mit ausgewaehlten Pflegeprodukten und Zubehoer fuer Fahrzeuge, die sauber, gepflegt und einsatzbereit bleiben sollen.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://rent.viantis.ch">Auto mieten</a>
-              <a class="btn btn-secondary" href="https://shop.viantis.ch">Zum Shop</a>
-            </div>
-          </div>
-
-          <div class="quick-panel" aria-label="Viantis Bereiche">
-            <a class="quick-link" href="https://rent.viantis.ch">
-              <b>rent.viantis.ch</b>
-              <strong>Autovermietung</strong>
-              <span>Fahrzeuge fuer Alltag, Wochenenden, Termine und flexible Mobilitaet.</span>
-            </a>
-            <a class="quick-link" href="https://shop.viantis.ch">
-              <b>shop.viantis.ch</b>
-              <strong>Pflege & Zubehoer</strong>
-              <span>Produkte fuer Innenraum, Aussenpflege, Schutz und praktisches Autozubehoer.</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="servicesTitle">
-        <div class="container">
-          <div class="section-head">
-            <h2 id="servicesTitle">Zwei Bereiche, ein Anspruch: Autos sollen funktionieren und gut aussehen.</h2>
-            <p>Ob du kurzfristig ein Fahrzeug brauchst oder dein eigenes Auto sauber halten willst, Viantis macht den naechsten Schritt direkt erreichbar.</p>
-          </div>
-
-          <div class="split">
-            <article class="service" id="rent">
-              <div class="service-media">
-                <img src="opel.png" alt="Mietfahrzeug von Viantis">
-              </div>
-              <div class="service-body">
-                <span class="service-kicker">Autovermietung</span>
-                <h3>Viantis Rent</h3>
-                <p>Flexible Mietfahrzeuge mit einfacher Anfrage, klaren Tagespreisen und persoenlicher Uebergabe.</p>
-                <ul>
-                  <li>City- und Alltagsfahrzeuge</li>
-                  <li>Transparente Mietpreise</li>
-                  <li>Anfrage direkt online starten</li>
-                </ul>
-                <a class="btn" href="https://rent.viantis.ch">rent.viantis.ch</a>
-              </div>
-            </article>
-
-            <article class="service" id="shop">
-              <div class="service-media">
-                <div class="shop-visual" role="img" aria-label="Autopflegeprodukte und Autozubehoer">
-                  <div class="product-row">
-                    <div class="bottle"></div>
-                    <div class="bottle"></div>
-                    <div class="bottle"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="service-body">
-                <span class="service-kicker">Shop</span>
-                <h3>Car Care Products</h3>
-                <p>Pflegeprodukte und Zubehoer fuer Innenraum, Lack, Felgen, Glas und den praktischen Einsatz rund ums Auto.</p>
-                <ul>
-                  <li>Autopflege fuer innen und aussen</li>
-                  <li>Zubehoer fuer Alltag und Fahrzeugpflege</li>
-                  <li>Online bestellen ueber den Viantis Shop</li>
-                </ul>
-                <a class="btn" href="https://shop.viantis.ch">shop.viantis.ch</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="dark-band" aria-labelledby="valuesTitle">
-        <div class="container">
-          <div class="section-head">
-            <h2 id="valuesTitle">Praktisch, direkt, sauber umgesetzt.</h2>
-            <p>Viantis ist fuer Kunden gedacht, die keine langen Umwege wollen: Fahrzeug finden, Anfrage stellen, Produkte bestellen, weiterkommen.</p>
-          </div>
-          <div class="values">
-            <article class="value">
-              <span>01</span>
-              <h3>Einfach buchen</h3>
-              <p>Die Mietanfrage laeuft direkt ueber Viantis Rent, mit Fokus auf schnellen Kontakt und klare Daten.</p>
-            </article>
-            <article class="value">
-              <span>02</span>
-              <h3>Gezielt pflegen</h3>
-              <p>Im Shop findest du Pflege und Zubehoer fuer Fahrzeuge, die im Alltag wirklich genutzt werden.</p>
-            </article>
-            <article class="value">
-              <span>03</span>
-              <h3>Persoenlich bleiben</h3>
-              <p>Hinter beiden Bereichen steht die Viantis GmbH mit direkter Kommunikation und verbindlichem Service.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact" id="kontakt" aria-labelledby="contactTitle">
-        <div class="container">
-          <div class="contact-panel">
-            <p class="eyebrow">Viantis GmbH</p>
-            <h2 id="contactTitle">Bereit fuer die naechste Fahrt oder die naechste Pflege?</h2>
-            <p>Waehle den passenden Bereich und starte direkt bei Viantis Rent oder im Viantis Shop.</p>
-            <div class="contact-actions">
-              <a class="btn btn-primary" href="https://rent.viantis.ch">Fahrzeug anfragen</a>
-              <a class="btn btn-secondary" href="https://shop.viantis.ch">Produkte ansehen</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <span>(c) 2026 Viantis GmbH</span>
-        <span><a href="impressum.html">Impressum</a></span>
-      </div>
-    </footer>
+<div class="wrap">
+  <div class="top">
+    <h1>Viantis – Mietvertrag</h1>
+    <div class="summary">Total: CHF <span id="topTotal">0.00</span></div>
+    <button onclick="generatePDF()">PDF generieren</button>
+    <button class="gray" onclick="generateBlankPDF()">Blanko-Vertrag PDF</button>
+    <button class="gray" onclick="resetAll()">Leeren</button>
   </div>
+
+  <div class="card">
+    <h2>Vertrag</h2>
+    <div class="grid">
+      <div class="f"><label>Vertrags-Nr.</label><input id="vertragNr" placeholder="MV-00001"></div>
+      <div class="f"><label>Vertragsdatum</label><input id="vertragDatum" type="date"></div>
+      <div class="f span2"><label>Vermieter</label><input value="Viantis GmbH" disabled></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Mieter</h2>
+    <div class="grid">
+      <div class="f"><label>Vorname</label><input id="vorname"></div>
+      <div class="f"><label>Nachname</label><input id="nachname"></div>
+      <div class="f span2"><label>Firma (optional)</label><input id="firma"></div>
+      <div class="f span2"><label>Strasse / Nr.</label><input id="strasse"></div>
+      <div class="f"><label>PLZ</label><input id="plz"></div>
+      <div class="f"><label>Ort</label><input id="ort"></div>
+      <div class="f"><label>Geburtsdatum</label><input id="geburtsdatum" type="date"></div>
+      <div class="f"><label>Telefon</label><input id="telefon"></div>
+      <div class="f span2"><label>E-Mail</label><input id="email" type="email"></div>
+      <div class="f"><label>Führerausweis-Nr.</label><input id="fuehrerausweis"></div>
+      <div class="f"><label>Ausweis / Pass-Nr.</label><input id="ausweisnr"></div>
+      <div class="f"><label>Ausstellungsland</label><input id="land" value="Schweiz"></div>
+      <div class="f"><label>Selbstbehalt</label><input id="selbstbehalt" readonly></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Fahrzeug & Mietzeitraum</h2>
+    <div class="grid">
+      <div class="f span2">
+        <label>Fahrzeug</label>
+        <select id="fahrzeug"></select>
+      </div>
+      <div class="f"><label>Kontrollschild</label><input id="schild" readonly></div>
+      <div class="f"><label>Treibstoff</label><input id="treibstoff" readonly></div>
+
+      <div class="f"><label>Abholung Datum</label><input id="startDatum" type="date"></div>
+      <div class="f"><label>Abholung Zeit</label><input id="startZeit" type="time" value="08:00"></div>
+      <div class="f"><label>Rückgabe Datum</label><input id="endeDatum" type="date"></div>
+      <div class="f"><label>Rückgabe Zeit</label><input id="endeZeit" type="time" value="08:00"></div>
+
+      <div class="f"><label>Verrechnete Tage</label><input id="tage" readonly></div>
+      <div class="f"><label>Grundpreis</label><input id="grundpreis" readonly></div>
+      <div class="f"><label>Inklusiv-km Basis</label><input id="basisKm" readonly></div>
+      <div class="f"><label>Inklusiv-km Total</label><input id="inklKm" readonly></div>
+
+      <div class="f"><label>KM bei Übergabe</label><input id="kmStart" type="number"></div>
+      <div class="f"><label>Tankstand</label><input id="tankStart" placeholder="voll"></div>
+      <div class="f"><label>VIN / Chassisnr.</label><input id="vin"></div>
+      <div class="f"><label>Farbe</label><input id="farbe"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Zusatzprodukte / Kilometerpakete</h2>
+    <div class="note">
+      Produkte werden zentral im JavaScript unter <b>CONFIG.products</b> erfasst. Dort kannst du später jederzeit
+      weitere Positionen ergänzen oder Preise ändern. Die 50-km- und 100-km-Pakete berechnen ihren Preis automatisch
+      mit dem Zusatzkilometerpreis des gewählten Fahrzeugs.
+    </div><br>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <select id="produktSelect" style="max-width:420px"></select>
+      <button class="green" onclick="addProduct()">Produkt hinzufügen</button>
+    </div><br>
+    <table>
+      <thead><tr><th>Produkt</th><th style="width:100px">Menge</th><th style="width:130px">Einzelpreis</th><th style="width:130px">Total</th><th style="width:80px"></th></tr></thead>
+      <tbody id="positions"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Rabatt & Total</h2>
+    <div class="grid">
+      <div class="f"><label>Rabattart</label>
+        <select id="rabattArt"><option value="prozent">Prozent</option><option value="betrag">Betrag CHF</option></select>
+      </div>
+      <div class="f"><label>Rabatt</label><input id="rabatt" type="number" step="0.01" value="0"></div>
+      <div class="f"><label>Kaution CHF (nicht im Miettotal)</label><input id="kaution" type="number" step="0.01" value="0"></div>
+      <div class="f"><label>Total inkl. MWST</label><input id="total" readonly></div>
+      <div class="f span2"><label>Rabatt-Bezeichnung</label><input id="rabattText" value="Rabatt"></div>
+      <div class="f"><label>MWST im Total</label><input id="mwst" readonly></div>
+      <div class="f"><label>MWST-Satz</label><input value="8.1 %" readonly></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Fahrer</h2>
+    <div class="grid">
+      <div class="f"><label>Vorname Fahrer</label><input id="fahrerVorname"></div>
+      <div class="f"><label>Nachname Fahrer</label><input id="fahrerNachname"></div>
+      <div class="f"><label>Geburtsdatum Fahrer</label><input id="fahrerGeb" type="date"></div>
+      <div class="f"><label>Führerausweis-Nr.</label><input id="fahrerFuehrerschein"></div>
+      <div class="f"><label>Telefon Fahrer</label><input id="fahrerTelefon"></div>
+      <div class="f span2"><label>E-Mail Fahrer</label><input id="fahrerEmail" type="email"></div>
+      <div class="f"><label>Ausstellungsland</label><input id="fahrerLand" value="Schweiz"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Bemerkungen / Fahrzeugzustand</h2>
+    <textarea id="bemerkungen" placeholder="Vorhandene Schäden, Besonderheiten, Zubehör usw."></textarea>
+  </div>
+
+  <div class="card">
+    <h2>Unterschriften</h2>
+    <div class="siggrid">
+      <div class="sig"><b>Mieter</b><canvas id="sigMieter"></canvas><br><button class="gray" onclick="clearSig('sigMieter')">Löschen</button></div>
+      <div class="sig"><b>Viantis GmbH</b><canvas id="sigViantis"></canvas><br><button class="gray" onclick="clearSig('sigViantis')">Löschen</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+============================================================
+ HIER FAHRZEUGE UND PRODUKTE PFLEGEN
+============================================================
+
+priceDay       = Tagespreis inkl. MWST
+priceWeek      = Wochenpreis inkl. MWST
+includedKmDay  = Inklusiv-km pro Tag
+extraKm        = Preis pro Zusatz-km
+
+Produkte:
+fixedPrice     = fixer Preis
+km             = zusätzliche Inklusiv-km; Preis wird automatisch
+                 aus km × Zusatz-km-Preis des Fahrzeugs berechnet.
+============================================================
+*/
+const VIANTIS_LOGO = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbgAAABuCAIAAADauJFiAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFO2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyc+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczpBdHRyaWI9J2h0dHA6Ly9ucy5hdHRyaWJ1dGlvbi5jb20vYWRzLzEuMC8nPgogIDxBdHRyaWI6QWRzPgogICA8cmRmOlNlcT4KICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPgogICAgIDxBdHRyaWI6Q3JlYXRlZD4yMDI2LTA3LTIwPC9BdHRyaWI6Q3JlYXRlZD4KICAgICA8QXR0cmliOkRhdGE+eyZxdW90O2RvYyZxdW90OzomcXVvdDtEQUhCTUQweW5XUSZxdW90OywmcXVvdDt1c2VyJnF1b3Q7OiZxdW90O1VBQmV4R09Zc0I4JnF1b3Q7LCZxdW90O2JyYW5kJnF1b3Q7OiZxdW90O0JBQmV4T3dTVFIwJnF1b3Q7fTwvQXR0cmliOkRhdGE+CiAgICAgPEF0dHJpYjpFeHRJZD4yMzNkMmIwZS0wZTgzLTRiYjUtYTViOS1iMDFhMjllNTUxNTc8L0F0dHJpYjpFeHRJZD4KICAgICA8QXR0cmliOkZiSWQ+NTI1MjY1OTE0MTc5NTgwPC9BdHRyaWI6RmJJZD4KICAgICA8QXR0cmliOlRvdWNoVHlwZT4yPC9BdHRyaWI6VG91Y2hUeXBlPgogICAgPC9yZGY6bGk+CiAgIDwvcmRmOlNlcT4KICA8L0F0dHJpYjpBZHM+CiA8L3JkZjpEZXNjcmlwdGlvbj4KCiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogIHhtbG5zOmRjPSdodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4x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";
+
+const CONFIG = {
+  company: {
+    name: "Viantis GmbH",
+    address: "Lehenmattstrasse 308, 4052 Basel",
+    pickup: "Götzisbodenweg 2, 4133 Pratteln",
+    email: "info@viantis.ch",
+    mobile: "0041797947177",
+    vatNr: "CHE-271.536.858 MWST",
+    vatRate: 8.1
+  },
+
+  vehicles: [
+    {id:"smart", name:"Smart Fortwo", plate:"BS72036", transmission:"Automat", fuel:"Benzin", priceDay:39, priceWeek:249, includedKmDay:150, extraKm:0.25},
+    {id:"dacia", name:"Dacia Sandero", plate:"BS78999", transmission:"Manuell", fuel:"Diesel", priceDay:49, priceWeek:299, includedKmDay:150, extraKm:0.25},
+    {id:"opel", name:"Opel Astra ST", plate:"BS70463", transmission:"Automat", fuel:"Benzin", priceDay:59, priceWeek:349, includedKmDay:150, extraKm:0.25},
+    {id:"vito", name:"Mercedes Vito", plate:"BS66223", transmission:"Automat", fuel:"Diesel", priceDay:79, priceWeek:499, includedKmDay:100, extraKm:0.50}
+  ],
+
+  products: [
+    {id:"KM50", name:"Kilometerpaket +50 km", km:50},
+    {id:"KM100", name:"Kilometerpaket +100 km", km:100},
+
+    // Beispiele für weitere Produkte:
+    // {id:"KINDERSITZ", name:"Kindersitzerhöhung", fixedPrice:15},
+    // {id:"REINIGUNG", name:"Zusatzreinigung", fixedPrice:30},
+    // {id:"ZUSTELLUNG", name:"Zustellung", fixedPrice:50}
+  ]
+};
+
+let rows = [];
+
+const $ = id => document.getElementById(id);
+const chf = n => "CHF " + (Number(n)||0).toFixed(2);
+const num = id => parseFloat($(id).value)||0;
+
+function init(){
+  $('vertragDatum').value = new Date().toISOString().slice(0,10);
+
+  CONFIG.vehicles.forEach(v=>{
+    const o=document.createElement('option');
+    o.value=v.id; o.textContent=`${v.name} – ${chf(v.priceDay)}/Tag`;
+    $('fahrzeug').appendChild(o);
+  });
+
+  CONFIG.products.forEach(p=>{
+    const o=document.createElement('option');
+    o.value=p.id; o.textContent=p.name;
+    $('produktSelect').appendChild(o);
+  });
+
+  ['fahrzeug','startDatum','startZeit','endeDatum','endeZeit','rabatt','rabattArt','geburtsdatum','fahrerGeb']
+    .forEach(id=>$(id).addEventListener('input', recalc));
+
+  $('fahrzeug').addEventListener('change',()=>{ updateVehicle(); repriceProducts(); recalc(); });
+  updateVehicle();
+  setupSig('sigMieter'); setupSig('sigViantis');
+  recalc();
+}
+
+function vehicle(){
+  return CONFIG.vehicles.find(v=>v.id===$('fahrzeug').value) || CONFIG.vehicles[0];
+}
+
+function updateVehicle(){
+  const v=vehicle();
+  $('schild').value=v.plate;
+  $('treibstoff').value=`${v.fuel} / ${v.transmission}`;
+}
+
+function rentalDays(){
+  if(!$('startDatum').value || !$('endeDatum').value) return 0;
+  const s = new Date($('startDatum').value+'T'+($('startZeit').value||'00:00'));
+  const e = new Date($('endeDatum').value+'T'+($('endeZeit').value||'00:00'));
+  const diff=(e-s)/3600000;
+  if(diff<=0) return 0;
+  return Math.max(1,Math.ceil(diff/24));
+}
+
+function basePrice(days,v){
+  if(days<=0) return 0;
+  const weeks=Math.floor(days/7);
+  const rest=days%7;
+  return weeks*v.priceWeek + rest*v.priceDay;
+}
+
+function ageOn(dateStr){
+  if(!dateStr) return null;
+  const dob=new Date(dateStr+'T12:00:00');
+  const ref=$('startDatum').value ? new Date($('startDatum').value+'T12:00:00') : new Date();
+  let a=ref.getFullYear()-dob.getFullYear();
+  const m=ref.getMonth()-dob.getMonth();
+  if(m<0 || (m===0 && ref.getDate()<dob.getDate())) a--;
+  return a;
+}
+
+function productPrice(p){
+  if(typeof p.fixedPrice === "number") return p.fixedPrice;
+  if(p.km) return p.km * vehicle().extraKm;
+  return 0;
+}
+
+function addProduct(){
+  const p=CONFIG.products.find(x=>x.id===$('produktSelect').value);
+  if(!p) return;
+  rows.push({uid:crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random()), productId:p.id, qty:1, unit:productPrice(p)});
+  renderRows(); recalc();
+}
+
+function repriceProducts(){
+  rows.forEach(r=>{
+    const p=CONFIG.products.find(x=>x.id===r.productId);
+    if(p && p.km) r.unit=productPrice(p);
+  });
+  renderRows();
+}
+
+function renderRows(){
+  const tb=$('positions'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const p=CONFIG.products.find(x=>x.id===r.productId);
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td>${p ? p.name : r.productId}</td>
+      <td><input type="number" min="1" step="1" value="${r.qty}" data-action="qty" data-id="${r.uid}"></td>
+      <td><input type="number" min="0" step="0.01" value="${Number(r.unit).toFixed(2)}" data-action="unit" data-id="${r.uid}"></td>
+      <td class="right"><b>${chf(r.qty*r.unit)}</b></td>
+      <td><button class="red" data-action="del" data-id="${r.uid}">x</button></td>`;
+    tb.appendChild(tr);
+  });
+
+  tb.querySelectorAll('input,button').forEach(el=>{
+    el.addEventListener('input',rowAction);
+    el.addEventListener('click',rowAction);
+  });
+}
+
+function rowAction(e){
+  const id=e.target.dataset.id, act=e.target.dataset.action;
+  if(!id||!act)return;
+  const r=rows.find(x=>x.uid===id);
+  if(!r)return;
+  if(act==='qty') r.qty=Math.max(1,parseInt(e.target.value)||1);
+  if(act==='unit') r.unit=Math.max(0,parseFloat(e.target.value)||0);
+  if(act==='del') rows=rows.filter(x=>x.uid!==id);
+  renderRows(); recalc();
+}
+
+function extraKmFromProducts(){
+  let km=0;
+  rows.forEach(r=>{
+    const p=CONFIG.products.find(x=>x.id===r.productId);
+    if(p && p.km) km += p.km*r.qty;
+  });
+  return km;
+}
+
+function subtotalProducts(){
+  return rows.reduce((s,r)=>s+r.qty*r.unit,0);
+}
+
+function recalc(){
+  const v=vehicle();
+  const days=rentalDays();
+  const base=basePrice(days,v);
+  const baseKm=days*v.includedKmDay;
+  const extraKm=extraKmFromProducts();
+  let subtotal=base+subtotalProducts();
+
+  let discount=0;
+  const rv=num('rabatt');
+  if($('rabattArt').value==='prozent') discount=subtotal*(rv/100);
+  else discount=rv;
+  discount=Math.min(Math.max(discount,0),subtotal);
+
+  const total=subtotal-discount;
+  const vat=total-(total/(1+CONFIG.company.vatRate/100));
+
+  $('tage').value=days || '';
+  $('grundpreis').value=chf(base);
+  $('basisKm').value=days ? baseKm+' km' : '';
+  $('inklKm').value=days ? (baseKm+extraKm)+' km' : '';
+  $('total').value=chf(total);
+  $('topTotal').textContent=total.toFixed(2);
+  $('mwst').value=chf(vat);
+
+  const age=ageOn($('fahrerGeb').value || $('geburtsdatum').value);
+  $('selbstbehalt').value = age!==null && age<25 ? "CHF 2'500.00" : "CHF 1'500.00";
+}
+
+function setupSig(id){
+  const c=$(id), ctx=c.getContext('2d');
+  let draw=false;
+  function resize(){
+    const r=c.getBoundingClientRect(), ratio=devicePixelRatio||1;
+    c.width=r.width*ratio;c.height=130*ratio;ctx.setTransform(ratio,0,0,ratio,0,0);
+    ctx.lineWidth=2;ctx.lineCap='round';ctx.strokeStyle='#111';
+  }
+  resize();
+  function p(e){
+    const r=c.getBoundingClientRect(), q=e.touches?e.touches[0]:e;
+    return {x:q.clientX-r.left,y:q.clientY-r.top}
+  }
+  function start(e){draw=true;const q=p(e);ctx.beginPath();ctx.moveTo(q.x,q.y);e.preventDefault()}
+  function move(e){if(!draw)return;const q=p(e);ctx.lineTo(q.x,q.y);ctx.stroke();e.preventDefault()}
+  c.addEventListener('mousedown',start);c.addEventListener('mousemove',move);window.addEventListener('mouseup',()=>draw=false);
+  c.addEventListener('touchstart',start,{passive:false});c.addEventListener('touchmove',move,{passive:false});c.addEventListener('touchend',()=>draw=false);
+}
+function clearSig(id){const c=$(id);c.getContext('2d').clearRect(0,0,c.width,c.height)}
+function hasInk(id){const c=$(id),b=document.createElement('canvas');b.width=c.width;b.height=c.height;return c.toDataURL()!=b.toDataURL()}
+function fmtDate(v){if(!v)return'';return new Date(v+'T12:00:00').toLocaleDateString('de-CH')}
+function t(id){return ($(id).value||'').trim()}
+
+function resetAll(){
+  if(!confirm('Alle Eingaben löschen?'))return;
+  document.querySelectorAll('input').forEach(i=>{if(!i.readOnly)i.value=''});
+  $('land').value='Schweiz'; if($('fahrerLand')) $('fahrerLand').value='Schweiz'; $('vertragDatum').value=new Date().toISOString().slice(0,10);
+  $('startZeit').value='08:00';$('endeZeit').value='08:00';$('rabatt').value='0';$('kaution').value='0';$('rabattText').value='Rabatt';
+  rows=[];renderRows();clearSig('sigMieter');clearSig('sigViantis');recalc();
+}
+
+function generatePDF(){
+  recalc();
+
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const C=CONFIG.company;
+  const V=vehicle();
+
+  const m=8;
+  const right=202;
+  const W=194;
+
+  const days=rentalDays();
+  const base=basePrice(days,V);
+  const productsTotal=subtotalProducts();
+  const subtotal=base+productsTotal;
+
+  const rv=num('rabatt');
+  let discount=$('rabattArt').value==='prozent' ? subtotal*(rv/100) : rv;
+  discount=Math.min(Math.max(discount,0),subtotal);
+
+  const total=subtotal-discount;
+  const vat=total-(total/(1+C.vatRate/100));
+
+  function txt(text,x,y,size=7.3,bold=false,align='left'){
+    doc.setTextColor(15,15,15);
+    doc.setFont('helvetica',bold?'bold':'normal');
+    doc.setFontSize(size);
+    doc.text(String(text??''),x,y,{align});
+  }
+
+  function box(x,y,w,h,r=1.4){
+    doc.setDrawColor(45);
+    doc.setLineWidth(0.24);
+    doc.roundedRect(x,y,w,h,r,r);
+  }
+
+  function line(x1,y1,x2,y2){
+    doc.setDrawColor(105);
+    doc.setLineWidth(0.16);
+    doc.line(x1,y1,x2,y2);
+  }
+
+  function fit(text,w,size=6.1){
+    doc.setFontSize(size);
+    return doc.splitTextToSize(String(text||''),w);
+  }
+
+  // ==========================================================
+  // HEADER – kompakter und besser ausgerichtet
+  // ==========================================================
+  doc.addImage(VIANTIS_LOGO,'PNG',11,7,52,13.33);
+
+
+  txt('Mietvertrag',76,11.5,11.5,true);
+  txt('Rental Agreement',76,17,11.5,true);
+
+  txt('VERTRAG / Contract',151,10,6.2,true);
+  txt(t('vertragNr')||'',202,10,6.2,false,'right');
+  txt('Datum / Date',151,14.5,6.2,true);
+  txt(fmtDate(t('vertragDatum')),202,14.5,6.2,false,'right');
+  txt('Station',151,19,6.2,true);
+  txt('Pratteln',202,19,6.2,false,'right');
+  txt('MWST-Nr.',151,23.5,6.2,true);
+  txt(C.vatNr,202,23.5,6.2,false,'right');
+  txt('Kontakt',151,28,6.2,true);
+  txt(C.mobile,202,28,6.2,false,'right');
+
+  txt('Tel. '+C.mobile,12,35,6.3);
+  txt(C.email,12,39.5,6.3);
+  txt(C.address,12,44,6.3);
+
+  // Kundenanschrift – etwas höher und kompakter
+  box(112,43,90,28,1.8);
+  txt((t('vorname')+' '+t('nachname')).trim()||'',116,49,7.8,true);
+  let ay=53.5;
+  if(t('firma')) { txt(t('firma'),116,ay,7.2); ay+=4.5; }
+  txt(t('strasse')||'',116,ay,7.2); ay+=4.5;
+  txt(([t('plz'),t('ort')].filter(Boolean).join(' '))||'',116,ay,7.2); ay+=4.5;
+  txt(t('land')||'Schweiz',116,ay,7.2);
+
+  // ==========================================================
+  // Mieter / Customer Reference
+  // ==========================================================
+  box(8,75,194,6.5,2);
+  txt('Mieter / Customer',12,79.3,6.6,true);
+  txt((t('vorname')+' '+t('nachname')).trim()||'',46,79.3,6.6);
+
+  // ==========================================================
+  // Fahrer / Mietdaten
+  // ==========================================================
+  box(8,84,194,31,1.8);
+  line(8,91,202,91);
+  line(132,84,132,115);
+
+  txt('Fahrer / Driver',12,89,6.8,true);
+  txt('Vertrag / Rental',136,89,6.8,true);
+
+  txt('Name',12,96,6.2,true);
+  txt((t('fahrerVorname')+' '+t('fahrerNachname')).trim()||'',40,96,6.5);
+  txt('Geburtsdatum',12,101,6.2,true);
+  txt(fmtDate(t('fahrerGeb'))||'',40,101,6.5);
+  txt('Führerausweis',12,106,6.2,true);
+  txt(t('fahrerFuehrerschein')||'',40,106,6.5);
+  txt('Telefon',12,111,6.2,true);
+  txt(t('fahrerTelefon')||'',40,111,6.5);
+
+  txt('Abholung',136,96,6.2,true);
+  txt(`${fmtDate(t('startDatum'))} ${t('startZeit')}`,159,96,6.4);
+  txt('Rückgabe',136,101,6.2,true);
+  txt(`${fmtDate(t('endeDatum'))} ${t('endeZeit')}`,159,101,6.4);
+  txt('Tage',136,106,6.2,true);
+  txt(String(days),159,106,6.4);
+  txt('Inklusiv km',136,111,6.2,true);
+  txt($('inklKm').value||'',159,111,6.4);
+
+  // ==========================================================
+  // Fahrzeug
+  // ==========================================================
+  box(8,118,194,18,1.8);
+  txt('Fahrzeug / Vehicle',12,123,6.8,true);
+  txt(`${V.name} - ${V.plate}`,12,129,8,true);
+  txt(`VIN: ${t('vin')||''}`,12,134,6.3);
+  txt(`KM Übergabe: ${t('kmStart')||''}`,82,129,6.3);
+  txt(`Tank: ${t('tankStart')||''}`,82,134,6.3);
+  txt(`Treibstoff: ${V.fuel}`,139,129,6.3);
+  txt(`Getriebe: ${V.transmission}`,139,134,6.3);
+
+  // ==========================================================
+  // Leistungen
+  // ==========================================================
+  let y=139;
+  box(8,y,194,62,1.5);
+
+  line(8,y+8,202,y+8);
+  line(118,y,118,y+62);
+  line(156,y,156,y+62);
+  line(180,y,180,y+62);
+  txt('Leistungen / Charges',12,y+5.3,6.8,true);
+  txt('Menge',108,y+5.3,6.6,true,'center');
+  txt('Einzelpreis',143,y+5.3,6.6,true,'center');
+  txt('Rabatt',169,y+5.3,6.6,true,'center');
+  txt('Betrag CHF',190,y+5.3,6.6,true,'center');
+
+  y+=14;
+
+  txt(V.name,12,y,7.2,true);
+  txt(days+' Tage',112,y,6.8,false,'right');
+  txt(V.priceDay.toFixed(2),151,y,6.8,false,'right');
+  txt('',177,y,6.8,false,'right');
+  txt(base.toFixed(2),198,y,6.8,true,'right');
+  y+=5.5;
+
+  txt(`Tarif ${V.priceDay.toFixed(2)}/Tag · ${V.priceWeek.toFixed(2)}/Woche`,15,y,5.9);
+  y+=5.5;
+
+  rows.forEach(r=>{
+    const p=CONFIG.products.find(x=>x.id===r.productId);
+    txt(p?p.name:r.productId,12,y,6.6);
+    txt(String(r.qty),112,y,6.6,false,'right');
+    txt(Number(r.unit).toFixed(2),151,y,6.6,false,'right');
+    txt('',177,y,6.6,false,'right');
+    txt((r.qty*r.unit).toFixed(2),198,y,6.6,false,'right');
+    y+=5.3;
+  });
+
+  if(discount>0){
+    const label=(t('rabattText')||'Rabatt') + ($('rabattArt').value==='prozent' ? ` ${rv.toFixed(2)}%` : '');
+    txt(label,12,y,6.6);
+    txt('-'+discount.toFixed(2),177,y,6.6,false,'right');
+    txt('-'+discount.toFixed(2),198,y,6.6,false,'right');
+    y+=5.3;
+  }
+
+  line(8,180,202,180);
+
+  // Hinweis links im ansonsten freien Totalbereich
+  txt('Hinweis:',12,186,6.2,true);
+  txt('Dieser Mietvertrag gilt nicht als finale Rechnung.',12,191,6.0);
+  txt('Für die endgültige Bezahlung ist die',12,196,6.0);
+  txt('Endabrechnung massgebend.',12,200,6.0,true);
+
+  txt('Zwischentotal',137,186,6.5,true);
+  txt(subtotal.toFixed(2),198,186,6.5,true,'right');
+
+  txt(`inkl. MWST ${C.vatRate.toFixed(1)}%`,137,191,6.3);
+  txt(vat.toFixed(2),198,191,6.3,false,'right');
+
+  txt('Total',137,197,8,true);
+  txt(total.toFixed(2),198,197,8,true,'right');
+
+  // ==========================================================
+  // Zusatzangaben
+  // ==========================================================
+  box(8,204,194,19,1.8);
+  txt('Zusatzangaben',12,209,6.7,true);
+  txt(`Inklusiv km: ${$('inklKm').value||''}`,12,215,6.4);
+  txt(`Zusatz-km: CHF ${V.extraKm.toFixed(2)} / km`,71,215,6.4);
+  txt(`Kaution: CHF ${num('kaution').toFixed(2)}`,139,215,6.4);
+  txt(`Selbstbehalt: ${$('selbstbehalt').value||''}`,12,220,6.4);
+
+
+  // ==========================================================
+  // Bedingungen – deutlich grösser
+  // ==========================================================
+  box(8,226,194,38,1.8);
+  txt('Mietbedingungen / Rental Conditions',12,231,6.8,true);
+
+  const conditions=[
+    'Das Fahrzeug ist vollgetankt zurückzugeben. Nachbetankung CHF 2.50 pro Liter.',
+    "Selbstbehalt CHF 1'500.–; unter 25 Jahren CHF 2'500.–.",
+    'Rauchen im Fahrzeug ist untersagt.',
+    'Bussen und Gebühren gehen zulasten des Mieters; Bearbeitungsgebühr CHF 50.– pro Fall.',
+    'Zusatzkilometer werden gemäss vereinbartem Tarif verrechnet.',
+    'Ergänzend gelten die AGB der Viantis GmbH.'
+  ];
+
+  let cy=236.5;
+  conditions.forEach(c=>{
+    const l=fit('• '+c,186,6.0);
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(6.0);
+    doc.text(l,12,cy);
+    cy+=l.length*3.35+0.5;
+  });
+
+  // ==========================================================
+  // Bemerkungen
+  // ==========================================================
+  box(8,267,194,11,1.8);
+  txt('Bemerkungen / Remarks',12,272,6.2,true);
+  const remark=fit(t('bemerkungen')||'Keine Bemerkungen.',145,5.9);
+  doc.setFontSize(5.9);
+  doc.text(remark,54,272);
+
+  // ==========================================================
+  // Unterschriften
+  // ==========================================================
+  if(hasInk('sigMieter')) doc.addImage($('sigMieter').toDataURL('image/png'),'PNG',18,280,50,10);
+  if(hasInk('sigViantis')) doc.addImage($('sigViantis').toDataURL('image/png'),'PNG',132,280,50,10);
+
+  line(12,291,86,291);
+  line(120,291,194,291);
+  txt('Unterschrift Mieter',12,295,5.8);
+  txt('Viantis GmbH',120,295,5.8);
+
+  const fn=[t('vertragNr'),t('nachname'),V.name]
+    .filter(Boolean)
+    .join('_')
+    .replace(/[^\wäöüÄÖÜß-]/g,'_');
+
+  doc.save('Mietvertrag_'+(fn||'Viantis')+'.pdf');
+}
+
+function generateBlankPDF(){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const C=CONFIG.company;
+
+  function txt(text,x,y,size=7.2,bold=false,align='left'){
+    doc.setTextColor(15,15,15);
+    doc.setFont('helvetica',bold?'bold':'normal');
+    doc.setFontSize(size);
+    doc.text(String(text||''),x,y,{align});
+  }
+  function box(x,y,w,h,r=1.5){
+    doc.setDrawColor(45);
+    doc.setLineWidth(0.24);
+    doc.roundedRect(x,y,w,h,r,r);
+  }
+  function line(x1,y1,x2,y2){
+    doc.setDrawColor(90);
+    doc.setLineWidth(0.18);
+    doc.line(x1,y1,x2,y2);
+  }
+  function writeLine(label,x,y,x2,labelW=28){
+    txt(label,x,y,6.2,true);
+    line(x+labelW,y+1,x2,y+1);
+  }
+
+  // HEADER
+  doc.addImage(VIANTIS_LOGO,'PNG',11,7,52,13.33);
+
+
+  txt('Mietvertrag',76,11.5,11.5,true);
+  txt('Rental Agreement',76,17,11.5,true);
+
+  writeLine('Vertrags-Nr.',151,10,202,23);
+  writeLine('Datum',151,15,202,23);
+  txt('Station',151,20,6.2,true);
+  txt('Pratteln',202,20,6.2,false,'right');
+  txt('MWST-Nr.',151,25,6.2,true);
+  txt(C.vatNr,202,25,6.2,false,'right');
+  txt('Kontakt',151,30,6.2,true);
+  txt(C.mobile,202,30,6.2,false,'right');
+
+  txt('Tel. '+C.mobile,12,35,6.3);
+  txt(C.email,12,39.5,6.3);
+  txt(C.address,12,44,6.3);
+
+  // CUSTOMER ADDRESS BOX
+  box(112,43,90,28,1.8);
+  writeLine('Name',116,49,197,18);
+  writeLine('Firma',116,54,197,18);
+  writeLine('Strasse',116,59,197,18);
+  writeLine('PLZ / Ort',116,64,197,18);
+  writeLine('Land',116,69,197,18);
+
+  // CUSTOMER REFERENCE
+  box(8,75,194,7,2);
+  txt('Mieter / Customer',12,79.7,6.6,true);
+  line(46,80.2,197,80.2);
+
+  // DRIVER / RENTAL
+  box(8,85,194,39,1.8);
+  line(8,92,202,92);
+  line(132,85,132,124);
+
+  txt('Fahrer / Driver',12,90,6.8,true);
+  txt('Vertrag / Rental',136,90,6.8,true);
+
+  writeLine('Name',12,98,126,28);
+  writeLine('Geburtsdatum',12,104,126,28);
+  writeLine('Führerausweis',12,110,126,28);
+  writeLine('Telefon',12,116,126,28);
+  writeLine('E-Mail',12,122,126,28);
+
+  writeLine('Abholung',136,98,198,23);
+  writeLine('Rückgabe',136,104,198,23);
+  writeLine('Tage',136,110,198,23);
+  writeLine('Inklusiv km',136,116,198,23);
+  writeLine('Selbstbehalt',136,122,198,23);
+
+  // VEHICLE
+  box(8,127,194,26,1.8);
+  txt('Fahrzeug / Vehicle',12,132,6.8,true);
+  writeLine('Fahrzeug',12,139,126,27);
+  writeLine('Kontrollschild',136,139,198,30);
+  writeLine('VIN',12,146,126,27);
+  writeLine('KM Übergabe',136,146,198,30);
+  writeLine('Tankstand',12,151,126,27);
+  writeLine('Treibstoff',136,151,198,30);
+
+  // CHARGES TABLE
+  let y=157;
+  box(8,y,194,61,1.5);
+  line(8,y+8,202,y+8);
+  line(118,y,118,y+61);
+  line(156,y,156,y+61);
+  line(180,y,180,y+61);
+
+  txt('Leistungen / Charges',12,y+5.3,6.8,true);
+  txt('Menge',108,y+5.3,6.6,true,'center');
+  txt('Einzelpreis',143,y+5.3,6.6,true,'center');
+  txt('Rabatt',169,y+5.3,6.6,true,'center');
+  txt('Betrag CHF',190,y+5.3,6.6,true,'center');
+
+  let rowY=y+15;
+  for(let i=0;i<5;i++){
+    line(8,rowY+3.5,202,rowY+3.5);
+    rowY+=8;
+  }
+
+  txt('Hinweis:',12,204,5.8,true);
+  txt('Dieser Mietvertrag gilt nicht als finale Rechnung.',12,209,5.6);
+  txt('Für die endgültige Bezahlung ist die',12,214,5.6);
+  txt('Endabrechnung massgebend.',12,218,5.6,true);
+
+  txt('Zwischentotal',123,204,6.4,true);
+  line(158,204.7,198,204.7);
+  txt('inkl. MWST 8.1%',123,210,6.2);
+  line(165,210.7,198,210.7);
+  txt('Total',123,216,7.4,true);
+  line(158,216.7,198,216.7);
+
+  // EXTRA INFO
+  box(8,221,194,23,1.8);
+  txt('Zusatzangaben',12,226,6.7,true);
+  writeLine('Inklusiv km',12,233,64,25);
+  writeLine('Zusatz-km',72,233,126,25);
+  writeLine('Kaution',136,233,198,22);
+  writeLine('Selbstbehalt',12,240,126,25);
+
+
+  // CONDITIONS
+  box(8,247,194,27,1.8);
+  txt('Mietbedingungen / Rental Conditions',12,252,6.8,true);
+  const conditions=[
+    '• Fahrzeug vollgetankt zurückgeben. Nachbetankung CHF 2.50/Liter.',
+    "• Selbstbehalt CHF 1'500.–; unter 25 Jahren CHF 2'500.–.",
+    '• Rauchverbot im Fahrzeug.',
+    '• Bussen/Gebühren zulasten des Mieters; Bearbeitungsgebühr CHF 50.–.',
+    '• Zusatzkilometer gemäss vereinbartem Tarif.',
+    '• Ergänzend gelten die AGB der Viantis GmbH.'
+  ];
+  let cy=257;
+  conditions.forEach(c=>{ txt(c,12,cy,5.9); cy+=3.2; });
+
+  // REMARKS
+  box(8,277,194,10,1.8);
+  txt('Bemerkungen / Remarks',12,282,6.1,true);
+  line(54,282.7,197,282.7);
+
+  // SIGNATURES
+  line(12,293,86,293);
+  line(120,293,194,293);
+  txt('Ort / Datum / Unterschrift Mieter',12,296,5.6);
+  txt('Ort / Datum / Viantis GmbH',120,296,5.6);
+
+  doc.save('Mietvertrag_Blanko_Viantis.pdf');
+}
+
+init();
+</script>
 </body>
 </html>
